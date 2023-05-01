@@ -1,0 +1,35 @@
+{
+  "name": "book-library",
+  "version": "1.0.0",
+  "description": "a book-library website",
+  "main": "server.js",
+  "scripts": {
+    "dev:watch": "nodemon build/index.js",
+    "dev": "NODE_ENV=development webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "books",
+    "library",
+    "book-library",
+    "reading"
+  ],
+  "author": "Sina Beyraghdar",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7",
+    "mongoose": "^7.1.0",
+    "sass": "^1.62.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.16.3",
+    "nodemon": "^2.0.22",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
