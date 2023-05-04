@@ -1,0 +1,14 @@
+// $orange: #b9e9f7;
+// $orange: #CFFDE1;
+// $orange-invert: findColorInvert($orange);
+// $custom-colors: ("orange": ($orange, $orange-invert));
+$spacing-values: ("large": 60px);
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+// @import "bulma/bulma.sass";
+@import "./views/pages/home/styles.scss";
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+body {
+  background-color: #FFF9DE;
+}

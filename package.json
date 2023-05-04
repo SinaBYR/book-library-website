@@ -4,9 +4,8 @@
   "description": "a book-library website",
   "main": "server.js",
   "scripts": {
-    "dev:watch": "nodemon build/index.js",
-    "dev": "NODE_ENV=development webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:watch": "nodemon build/server.js",
+    "dev": "NODE_ENV=development webpack"
   },
   "keywords": [
     "books",
@@ -17,19 +16,30 @@
   "author": "Sina Beyraghdar",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.13.0",
+    "bulma": "^0.9.4",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "handlebars": "^4.7.7",
-    "mongoose": "^7.1.0",
-    "sass": "^1.62.1"
+    "hbs": "^4.2.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "@types/hbs": "^4.0.1",
     "@types/node": "^18.16.3",
+    "@types/webpack": "^5.28.1",
+    "css-loader": "^6.7.3",
+    "mini-css-extract-plugin": "^2.7.5",
     "nodemon": "^2.0.22",
+    "postcss-loader": "^7.3.0",
+    "prisma": "^4.13.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
     "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
     "webpack": "^5.81.0",
     "webpack-cli": "^5.0.2",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "webpack-shell-plugin-next": "^2.3.1"
   }
 }
