@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/main.min.css">
+</head>
+<body>
+  <main class="hero is-fullheight">
+    {{> navbar}}
+
+    <section id="signin-container" class="container column is-one-third">
+      <h2 class="title has-text-centered">Login</h2>
+      {{!-- <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input">
+        </div>
+      </div> --}}
+
+      <div class="field">
+        <label class="label" for="email">Email</label>
+        <div class="control has-icons-left">
+          <input class="input is-danger" type="email" id="email" name="email">
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+        </div>
+        <p class="help is-danger">This email is invalid</p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="password">Password</label>
+        <div class="control has-icons-left">
+          <input class="input is-danger" type="password" id="password" name="password">
+          <span class="icon is-small is-left">
+            <i class="fa fa-key"></i>
+          </span>
+        </div>
+        <p class="help is-danger">This email is invalid</p>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <button class="button is-primary is-fullwidth">
+            <strong>Sign in</strong>
+          </button>
+        </div>
+      </div>
+
+      <div class="level">
+        <div class="level-item">
+          Don't have an account?
+          <a class="button is-ghost" href="/signup">Register</a>
+        </div>
+      </div>
+    </section>
+
+    {{> footer}}
+  </main>
+</body>
+</html>

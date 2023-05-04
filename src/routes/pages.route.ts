@@ -1,8 +1,12 @@
 import * as express from 'express';
-import { renderHomePage } from '../controllers/pages.controller';
+import {
+  renderHomePage,
+  renderSignInPage
+} from '../controllers/pages.controller';
 
 const router = express.Router();
 
 router.get('/', renderHomePage);
+router.get('/signin', renderSignInPage);
 
 export default router;
