@@ -3,7 +3,7 @@ import {
   renderHomePage,
   renderSignInPage,
   renderSignUpPage
-} from '../controllers/pages.controller';
+} from '../controllers';
 
 const router = express.Router();
 
