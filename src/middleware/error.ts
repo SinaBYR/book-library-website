@@ -8,7 +8,13 @@ export function authRouteErrorHandler(err: unknown, req: Request, res: Response,
     return res.send('Server Error')
   }
 
-  let errorMessages = err.details.map(e => e.message);
+  let errorMessages: any = {};
+  err.details.map(e => e.context?.label).forEach(label => {
+    let errorObj = err.details.find(v => v.context?.label === label);
+    errorMessages[label as string] = errorObj?.message;
+  })
+
+  delete err._original.repeatPassword;
 
   if(req.path === '/register') {
     res.status(400).render('pages/signup/page', {
