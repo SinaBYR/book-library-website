@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 import config from '../config/config';
 import tokens from '../config/tokens';
 import { PrismaClient } from '@prisma/client';
@@ -27,13 +27,14 @@ async function saveToken(token: string, userId: string, expires: Date, type: Tok
   await prisma.$disconnect();
 }
 
-function generateToken(userId: string, expires: Moment, type: string, secret = config.jwt.secret) {
+function generateToken(userId: string, expiresIn: number, type: string, secret = config.jwt.secret) {
   return jwt.sign({
     sub: userId,
     iat: moment().unix(),
-    eat: expires.unix(),
-    type
-  }, secret!);
+    type,
+  }, secret!, {
+    expiresIn
+  });
 }
 
 type User = {
@@ -45,14 +46,17 @@ type User = {
 export async function generateAuthToken(user: User) {
   // 1. throw error
   if(!user?.id) return;
-
-  const accessTokenExp = moment().add(config.jwt.accessExpMinutes, 'minutes');
-  const accessToken = generateToken(user.id, accessTokenExp, tokens.ACCESS);
-  await saveToken(accessToken, user.id, accessTokenExp.toDate(), tokens.ACCESS as TokenTypes);
+  const minutes = config.jwt.accessExpMinutes;
+  if(!minutes) {
+    throw new Error('JWT_ACCESS_EXPIRATION_MINUTES env variable is undefined');
+  }
+  const accessToken = generateToken(user.id, +minutes * 60, tokens.ACCESS);
+  const accessTokenExpDate = moment().utcOffset('+03:30').add(minutes, 'minutes').toDate();
+  await saveToken(accessToken, user.id, accessTokenExpDate, tokens.ACCESS as TokenTypes);
   return {
     access: {
       token: accessToken,
-      expires: accessTokenExp
+      expires: accessTokenExpDate
     }
   }
 }
