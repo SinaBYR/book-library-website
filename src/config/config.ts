@@ -1,6 +1,7 @@
 export default {
   jwt: {
     secret: process.env.JWT_SECRET,
-    accessExpMinutes: process.env.JWT_ACCESS_EXPIRATION_MINUTES
+    accessTokenExpMinutes: process.env.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES,
+    accessSessionExpMinutes: process.env.JWT_ACCESS_SESSION_EXPIRATION_MINUTES
   }
 }

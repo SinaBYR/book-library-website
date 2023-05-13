@@ -46,9 +46,9 @@ type User = {
 export async function generateAuthToken(user: User) {
   // 1. throw error
   if(!user?.id) return;
-  const minutes = config.jwt.accessExpMinutes;
+  const minutes = config.jwt.accessTokenExpMinutes;
   if(!minutes) {
-    throw new Error('JWT_ACCESS_EXPIRATION_MINUTES env variable is undefined');
+    throw new Error('JWT_ACCESS_TOKEN_EXPIRATION_MINUTES env variable is undefined');
   }
   const accessToken = generateToken(user.id, +minutes * 60, tokens.ACCESS);
   const accessTokenExp = moment().add(minutes, 'minutes');
