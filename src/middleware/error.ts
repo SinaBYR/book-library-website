@@ -1,5 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "joi";
+import { AuthError } from "../utils/AuthError";
+
+export function handleAuthError(err: unknown, req: Request, res: Response, next: NextFunction) {
+  if(!(err instanceof AuthError)) {
+    return next(err);
+  }
+
+  if(req.path === '/login') {
+    return res.status(err.statusCode).render('pages/signin/page', {
+      formData: err.payload,
+      errors: {
+        header: err.message
+      }
+    });
+  }
+}
 
 export function authRouteErrorHandler(err: unknown, req: Request, res: Response, next: NextFunction) {
   if(!(err instanceof ValidationError)) {
