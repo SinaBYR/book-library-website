@@ -1,7 +1,10 @@
 import * as express from 'express';
 import pagesRoute from './pages.route';
 import authRoutes from './auth.routes';
+import { auth } from '../middleware/auth';
 const router = express.Router();
+
+router.use(auth);
 
 const defaultRoutes = [
   {
