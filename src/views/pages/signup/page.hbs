@@ -73,13 +73,12 @@
           <label class="label" for="repeatPassword">Confirm Password</label>
           <div class="control has-icons-left has-icons-right">
             {{#if errors.repeatPassword}}
-            <input class="input is-danger" type="repeatPassword" id="repeatPassword" name="repeatPassword">
+            <input class="input is-danger" type="password" id="repeatPassword" name="repeatPassword">
             {{else}}
-            <input class="input" type="repeatPassword" id="repeatPassword" name="repeatPassword">
+            <input class="input" type="password" id="repeatPassword" name="repeatPassword">
             {{/if}}
             <span class="icon is-small is-left">
               <i class="fa fa-key"></i>
-              <i class="fa fa-key" style="margin-left: -4px;"></i>
             </span>
             <span class="icon is-small is-right is-clickable">
               <i class="fa fa-eye"></i>
