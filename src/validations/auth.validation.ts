@@ -1,5 +1,17 @@
 import Joi from 'joi';
 
+export const login = Joi.object({
+  email: Joi.string().required().email().messages({
+    'any.required': 'Enter your email address',
+    'string.empty': 'Enter your email address',
+    'string.email': 'Email address is not valid'
+  }),
+  password: Joi.string().required().strict().messages({
+    'any.required': 'Enter a password',
+    'string.empty': 'Enter a password',
+  }),
+});
+
 export const register = Joi.object({
   fullName: Joi.string().required().messages({
     'any.required': 'Enter your full name',
