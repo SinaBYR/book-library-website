@@ -39,7 +39,7 @@ function generateToken(userId: string, expiresIn: number, type: string, secret =
 
 type User = {
   id: string
-  name: string
+  fullName: string
   email: string
 } | undefined
 
