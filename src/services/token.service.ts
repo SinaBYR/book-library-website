@@ -51,12 +51,12 @@ export async function generateAuthToken(user: User) {
     throw new Error('JWT_ACCESS_EXPIRATION_MINUTES env variable is undefined');
   }
   const accessToken = generateToken(user.id, +minutes * 60, tokens.ACCESS);
-  const accessTokenExpDate = moment().utcOffset('+03:30').add(minutes, 'minutes').toDate();
-  await saveToken(accessToken, user.id, accessTokenExpDate, tokens.ACCESS as TokenTypes);
+  const accessTokenExp = moment().add(minutes, 'minutes');
+  await saveToken(accessToken, user.id, accessTokenExp.toDate(), tokens.ACCESS as TokenTypes);
   return {
     access: {
       token: accessToken,
-      expires: accessTokenExpDate
+      expires: accessTokenExp
     }
   }
 }
