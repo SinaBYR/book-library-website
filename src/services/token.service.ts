@@ -7,6 +7,16 @@ import { RequestUser } from '../types/express';
 
 const prisma = new PrismaClient();
 
+export async function deleteAllTokensExceptForCurrent(currentToken: string) {
+  await prisma.token.deleteMany({
+    where: {
+      NOT: {
+        token: currentToken
+      }
+    }
+  });
+}
+
 export async function deleteToken(token: string) {
   await prisma.$connect();
   const deletedToken = await prisma.token.delete({
