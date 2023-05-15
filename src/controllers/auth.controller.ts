@@ -1,9 +1,13 @@
 import { Request, Response } from "express";
-import { registerUserWithEmailAndPassword, generateAuthToken, loginUserWithEmailAndPassword } from "../services";
+import { registerUserWithEmailAndPassword, generateAuthToken, loginUserWithEmailAndPassword, logoutUser, logoutAllExceptForCurrent } from "../services";
 import { RegisterReqBody, LoginReqBody } from "./types";
 import catchAsync from "../utils/catchAsync";
 import config from "../config/config";
-import { logoutUser } from "../services/auth.service";
+
+export const logoutAll = catchAsync(async (req: Request, res: Response) => {
+  await logoutAllExceptForCurrent(req.headers.cookie);
+  res.end();
+})
 
 export const logout = catchAsync(async (req: Request, res: Response) => {
   await logoutUser(req);
