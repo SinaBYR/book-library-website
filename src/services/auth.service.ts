@@ -7,7 +7,7 @@ import { Request } from "express";
 
 export async function logoutAllExceptForCurrent(req: Request) {
   if(!req.token) {
-    throw new ApiError(401, 'Unauthenticated access');
+    throw new ApiError(401, 'Unauthenticated access. Please login.');
   }
 
   await deleteAllTokensExceptForCurrent(req.token);
@@ -15,7 +15,7 @@ export async function logoutAllExceptForCurrent(req: Request) {
 
 export async function logoutUser(req: Request) {
   if(!req.token) {
-    throw new ApiError(401, 'Unauthenticated access');
+    throw new ApiError(401, 'Unauthenticated access. Please login.');
   }
 
   req.user = null;

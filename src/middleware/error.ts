@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "joi";
-import { AuthError } from "../utils/AuthError";
+import { ApiError, AuthError } from "../utils/errors";
 
 export function handleValidationError(err: unknown, req: Request, res: Response, next: NextFunction) {
   if(!(err instanceof ValidationError)) {
@@ -56,6 +56,21 @@ export function handleAuthError(err: unknown, req: Request, res: Response, next:
           auth: err.message
         }
       })
+    }
+
+    default:
+      break;
+  }
+}
+
+export function handleApiError(err: unknown, req: Request, res: Response, next: NextFunction) {
+  if(!(err instanceof ApiError)) {
+    return next(err);
+  }
+
+  switch (req.path) {
+    case '/logout': {
+      return res.status(err.statusCode).send(err.message);
     }
 
     default:
