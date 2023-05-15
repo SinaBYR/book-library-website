@@ -14,16 +14,16 @@ export function handleValidationError(err: unknown, req: Request, res: Response,
   })
 
   switch (req.path) {
-    case '/register': {
-      delete err._original.repeatPassword;
-      return res.status(400).render('pages/signup/page', {
+    case '/login': {
+      return res.status(400).render('pages/signin/page', {
         formData: err._original,
         errors: errorMessages
       });
     }
 
-    case '/login': {
-      return res.status(400).render('pages/signin/page', {
+    case '/register': {
+      delete err._original.repeatPassword;
+      return res.status(400).render('pages/signup/page', {
         formData: err._original,
         errors: errorMessages
       });
@@ -40,13 +40,23 @@ export function handleAuthError(err: unknown, req: Request, res: Response, next:
   }
 
   switch (req.path) {
-    case '/login':
+    case '/login': {
       return res.status(err.statusCode).render('pages/signin/page', {
         formData: err.payload,
         errors: {
           auth: err.message
         }
       });
+    }
+
+    case '/register': {
+      return res.status(err.statusCode).render('pages/signup/page', {
+        formData: err.payload,
+        errors: {
+          auth: err.message
+        }
+      })
+    }
 
     default:
       break;
