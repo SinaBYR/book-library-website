@@ -7,6 +7,19 @@ import { RequestUser } from '../types/express';
 
 const prisma = new PrismaClient();
 
+export async function deleteToken(token: string) {
+  await prisma.$connect();
+  const deletedToken = await prisma.token.delete({
+    where: {
+      token
+    },
+    select: null
+  });
+
+  await prisma.$disconnect();
+  return deletedToken;
+}
+
 type TokenTypes = keyof typeof tokens
 
 async function saveToken(token: string, userId: string, expires: Date, type: TokenTypes) {

@@ -2,6 +2,16 @@ import { LoginReqBody, RegisterReqBody } from "../controllers/types";
 import { createNewUser, getUserByEmail, isEmailTaken } from "./";
 import { AuthError } from "../utils/AuthError";
 import { isPasswordMatch } from "../utils/password";
+import { deleteToken } from "./token.service";
+import { Request } from "express";
+import { extractToken } from "../utils/extractToken";
+
+export async function logoutUser(req: Request) {
+  const accessToken = extractToken(req.headers.cookie);
+  if(!accessToken) return;
+  req.user = null;
+  await deleteToken(accessToken);
+}
 
 export async function loginUserWithEmailAndPassword(body: LoginReqBody) {
   const user = await getUserByEmail(body.email);
