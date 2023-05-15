@@ -1,22 +1,27 @@
 import { NextFunction, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import config from '../config/config';
-import { JWTPayload } from '../types';
 import { extractToken } from '../utils/extractToken';
+import { verifyToken } from '../services';
 
-export function auth(req: Request, _res: Response, next: NextFunction) {
+export async function auth(req: Request, _res: Response, next: NextFunction) {
   const accessToken = extractToken(req.headers.cookie);
   if(!accessToken) {
     req.user = null;
+    req.token = null;
     return next();
   }
 
-  const secret = config.jwt.secret!;
-  const payload = jwt.verify(accessToken, secret) as JWTPayload;
+  const user = await verifyToken(accessToken);
+  if(!user) {
+    req.user = null;
+    req.token = null;
+    return next();
+  }
+
+  req.token = accessToken;
   req.user = {
-    id: payload.sub,
-    fullName: payload.fullName,
-    email: payload.email
+    id: user.sub,
+    fullName: user.fullName,
+    email: user.email
   };
   next();
 }
