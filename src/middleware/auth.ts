@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config/config';
+import { JWTPayload } from '../types';
 
 export async function auth(req: Request, res: Response, next: NextFunction) {
   try {
@@ -20,8 +21,12 @@ export async function auth(req: Request, res: Response, next: NextFunction) {
 
     const accessToken = accessTokenCookie.slice(5);
     const secret = config.jwt.secret!;
-    const payload = jwt.verify(accessToken, secret);
-    console.log(payload);
+    const payload = jwt.verify(accessToken, secret) as JWTPayload;
+    req.user = {
+      id: payload.sub,
+      fullName: payload.fullName,
+      email: payload.email
+    };
     next();
   } catch(err) {
     console.log(err);
