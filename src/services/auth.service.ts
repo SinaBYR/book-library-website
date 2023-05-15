@@ -17,7 +17,10 @@ export async function logoutAllExceptForCurrent(cookies: string | undefined) {
 
 export async function logoutUser(req: Request) {
   const accessToken = extractToken(req.headers.cookie);
-  if(!accessToken) return;
+  if(!accessToken) {
+    throw new ApiError(401, 'Unauthenticated access');
+  }
+
   req.user = null;
   await deleteToken(accessToken);
 }
