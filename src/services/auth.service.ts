@@ -1,10 +1,7 @@
-import { PrismaClient } from "@prisma/client";
 import { LoginReqBody, RegisterReqBody } from "../controllers/types";
-import { getUserByEmail } from "./user.service";
+import { createNewUser, getUserByEmail, isEmailTaken } from "./";
 import { AuthError } from "../utils/AuthError";
 import { isPasswordMatch } from "../utils/password";
-
-const prisma = new PrismaClient();
 
 export async function loginUserWithEmailAndPassword(body: LoginReqBody) {
   const user = await getUserByEmail(body.email);
@@ -22,25 +19,13 @@ export async function loginUserWithEmailAndPassword(body: LoginReqBody) {
   };
 }
 
-export async function createNewUser(body: RegisterReqBody) {
-  try {
-    await prisma.$connect();
-    const user = await prisma.user.create({
-      data: {
-        name: body.fullName,
-        email: body.email,
-        password: body.password,
-      }
-    });
-
-    return {
-      id: user.id,
-      email: user.email,
-      fullName: user.name
-    };
-  } catch(err) {
-    console.log(err);
-  } finally {
-    await prisma.$disconnect();
+export async function registerUserWithEmailAndPassword(body: RegisterReqBody) {
+  const taken = await isEmailTaken(body.email);
+  if(taken) {
+    // un-necessary 'repeatPassword' is being sent back to the browser
+    throw new AuthError(409, 'Email already taken', body);
   }
+
+  const user = await createNewUser(body);
+  return user;
 }

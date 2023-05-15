@@ -1,3 +1,3 @@
-export { createNewUser, loginUserWithEmailAndPassword } from './auth.service';
+export { registerUserWithEmailAndPassword, loginUserWithEmailAndPassword } from './auth.service';
 export { generateAuthToken } from './token.service';
-export { getUserByEmail } from './user.service';
+export { createNewUser, isEmailTaken, getUserByEmail } from './user.service';
