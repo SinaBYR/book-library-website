@@ -4,25 +4,22 @@ import { AuthError, ApiError } from "../utils/errors";
 import { isPasswordMatch } from "../utils/password";
 import { deleteAllTokensExceptForCurrent, deleteToken } from "./";
 import { Request } from "express";
-import { extractToken } from "../utils/extractToken";
 
-export async function logoutAllExceptForCurrent(cookies: string | undefined) {
-  const accessToken = extractToken(cookies);
-  if(!accessToken) {
+export async function logoutAllExceptForCurrent(req: Request) {
+  if(!req.token) {
     throw new ApiError(401, 'Unauthenticated access');
   }
 
-  await deleteAllTokensExceptForCurrent(accessToken);
+  await deleteAllTokensExceptForCurrent(req.token);
 }
 
 export async function logoutUser(req: Request) {
-  const accessToken = extractToken(req.headers.cookie);
-  if(!accessToken) {
+  if(!req.token) {
     throw new ApiError(401, 'Unauthenticated access');
   }
 
   req.user = null;
-  await deleteToken(accessToken);
+  await deleteToken(req.token);
 }
 
 export async function loginUserWithEmailAndPassword(body: LoginReqBody) {

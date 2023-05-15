@@ -5,7 +5,7 @@ import catchAsync from "../utils/catchAsync";
 import config from "../config/config";
 
 export const logoutAll = catchAsync(async (req: Request, res: Response) => {
-  await logoutAllExceptForCurrent(req.headers.cookie);
+  await logoutAllExceptForCurrent(req);
   res.end();
 })
 
