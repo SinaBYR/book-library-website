@@ -19,7 +19,7 @@ model User {
 
 model Token {
   id      String  @id @default(auto()) @db.ObjectId @map("_id")
-  token   String
+  token   String  @unique
   type    String
   expires DateTime
   user    User    @relation(fields: [userId], references: [id])
