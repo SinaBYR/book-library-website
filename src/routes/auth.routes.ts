@@ -1,13 +1,14 @@
 import * as express from 'express';
 import { register, login } from '../controllers';
 import * as validate from '../middleware/validate';
-import { authRouteErrorHandler, handleAuthError } from '../middleware/error';
+import { handleValidationError, handleAuthError } from '../middleware/error';
 
 const router: express.Router = express.Router();
 
-router.post('/login', validate.validateLogin,login);
+router.post('/login', validate.validateLogin, login);
 router.post('/register', validate.validateRegister, register);
+router.use(handleValidationError);
 router.use(handleAuthError);
-router.use(authRouteErrorHandler);
+router.use('*', (_, res) => res.redirect('/signin'));
 
 export default router;
