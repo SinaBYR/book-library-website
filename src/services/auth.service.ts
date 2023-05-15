@@ -23,7 +23,7 @@ export async function registerUserWithEmailAndPassword(body: RegisterReqBody) {
   const taken = await isEmailTaken(body.email);
   if(taken) {
     // un-necessary 'repeatPassword' is being sent back to the browser
-    throw new AuthError(409, 'Email already taken', body);
+    throw new AuthError(409, 'Email address already taken', body);
   }
 
   const user = await createNewUser(body);
