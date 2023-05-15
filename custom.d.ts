@@ -5,5 +5,6 @@ declare namespace Express {
       fullName: string;
       email: string;
     } | null
+    token: string | null
   }
 }
