@@ -7,6 +7,10 @@ logoutButton.addEventListener('click', async e => {
     method: 'post'
   });
 
+  if(result.status === 401) {
+    document.location.href = '/';
+  }
+
   if(result.ok) {
     document.location.href = '/';
   }
