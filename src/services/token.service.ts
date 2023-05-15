@@ -4,6 +4,7 @@ import config from '../config/config';
 import tokens from '../config/tokens';
 import { PrismaClient } from '@prisma/client';
 import { RequestUser } from '../types/express';
+import { JWTPayload } from '../types';
 
 const prisma = new PrismaClient();
 
@@ -28,6 +29,23 @@ export async function deleteToken(token: string) {
 
   await prisma.$disconnect();
   return deletedToken;
+}
+
+export async function verifyToken(token: string) {
+  await prisma.$connect();
+  const secret = config.jwt.secret!;
+  const isTokenPresent = await prisma.token.findUnique({
+    where: {
+      token
+    },
+    select: null
+  });
+  await prisma.$disconnect();
+  if(!isTokenPresent) {
+    return null;
+  }
+  const payload = jwt.verify(token, secret) as JWTPayload;
+  return payload;
 }
 
 type TokenTypes = keyof typeof tokens
