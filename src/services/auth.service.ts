@@ -1,10 +1,19 @@
 import { LoginReqBody, RegisterReqBody } from "../controllers/types";
 import { createNewUser, getUserByEmail, isEmailTaken } from "./";
-import { AuthError } from "../utils/AuthError";
+import { AuthError, ApiError } from "../utils/errors";
 import { isPasswordMatch } from "../utils/password";
-import { deleteToken } from "./token.service";
+import { deleteAllTokensExceptForCurrent, deleteToken } from "./";
 import { Request } from "express";
 import { extractToken } from "../utils/extractToken";
+
+export async function logoutAllExceptForCurrent(cookies: string | undefined) {
+  const accessToken = extractToken(cookies);
+  if(!accessToken) {
+    throw new ApiError(401, 'Unauthenticated access');
+  }
+
+  await deleteAllTokensExceptForCurrent(accessToken);
+}
 
 export async function logoutUser(req: Request) {
   const accessToken = extractToken(req.headers.cookie);
