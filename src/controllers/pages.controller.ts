@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { getTrendingBooks } from "../services";
+import catchAsync from "../utils/catchAsync";
 
 export function renderSignUpPage(req: Request, res: Response) {
   if(req.user) {
@@ -16,8 +18,10 @@ export function renderSignInPage(req: Request, res: Response) {
   res.render('pages/signin/page');
 }
 
-export function renderHomePage(req: Request, res: Response) {
+export const renderHomePage = catchAsync(async (req: Request, res: Response) => {
+  const data = await getTrendingBooks();
   res.render('pages/home/page', {
-    user: req.user
+    user: req.user,
+    data
   });
-}
+})
