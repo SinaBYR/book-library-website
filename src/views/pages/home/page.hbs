@@ -8,17 +8,23 @@
   <link rel="stylesheet" href="/css/main.min.css">
 </head>
 <body>
-  <main class="hero is-fullheight">
+  <main class="columns is-flex-direction-column">
     {{> navbar/index }}
-
-    <section class="section hero is-medium">
-      <div>
+    
+    <section class="column is-narrow mt-5" style="height: 100vh">
+      <div class="container has-background-info p-3">
+        <h1 class="title is-5">Quote of the day</h1>
+        <p class="subtitle">
+          My first website with <strong>Bulma</strong>!
+        </p>
+      </div>
+      <div class="container has-background-info py-3 mt-3">
         <h1 class="title is-1">
           Here is the right place, for book lovers!
         </h1>
-        {{!-- <p class="subtitle">
+        <p class="subtitle">
           My first website with <strong>Bulma</strong>!
-        </p> --}}
+        </p>
       </div>
     </section>
 
