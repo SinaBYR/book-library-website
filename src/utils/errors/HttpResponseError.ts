@@ -1,6 +1,6 @@
 import { Response } from "node-fetch";
 
-export class HTTPResponseError extends Error {
+export class HttpResponseError extends Error {
   response: Response;
   statusCode: number;
 
@@ -8,7 +8,7 @@ export class HTTPResponseError extends Error {
 		super(message);
 		this.response = response;
     this.statusCode = statusCode;
-    this.name = 'HTTPResponseError';
+    this.name = 'HttpResponseError';
     if (stack) {
       this.stack = stack;
     } else {
