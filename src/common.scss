@@ -1,0 +1,7 @@
+a.navbar-item-link {
+  color: $white !important;
+  &:hover {
+    color: $blue !important;
+    background-color: $white !important;
+  }
+}

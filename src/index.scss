@@ -1,16 +1,20 @@
-$white: #FFF9DE;
-$orange: #ff8606;
-$orange-invert: findColorInvert($orange);
-$blue: #7DB9B6;
-$blue-invert: findColorInvert($blue);
-$custom-colors: ("orange": ($orange, $orange-invert), "blue": ($blue, $blue-invert));
+$white: #F0F0F0;
+$white-invert: findColorInvert($white);
 
+$blue: #3C486B;
+$blue-invert: findColorInvert($blue);
+
+$orange: #EF6C35;
+$orange-invert: findColorInvert($orange);
+
+$custom-colors: ("white": ($white, $white-invert), "blue": ($blue, $blue-invert), "orange": ($orange, $orange-invert));
 @import "bulma/bulma.sass";
+@import "./common.scss";
 @import "https://use.fontawesome.com/releases/v5.15.4/css/solid.css";
 @import "https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css";
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 body {
-  background-color: #FFF9DE;
+  background-color: $white;
 }
