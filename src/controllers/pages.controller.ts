@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getTrendingBooks } from "../services";
+import { getRandomQuote, getTopSubjects, getTrendingBooks } from "../services";
 import catchAsync from "../utils/catchAsync";
 
 export function renderSignUpPage(req: Request, res: Response) {
@@ -19,9 +19,15 @@ export function renderSignInPage(req: Request, res: Response) {
 }
 
 export const renderHomePage = catchAsync(async (req: Request, res: Response) => {
-  const data = await getTrendingBooks();
+  const trendingBooks = await getTrendingBooks();
+  const topSubjects = await getTopSubjects();
+  const quote = await getRandomQuote();
   res.render('pages/home/page', {
     user: req.user,
-    data
+    data: {
+      trendingBooks,
+      topSubjects,
+      quote
+    }
   });
 })
