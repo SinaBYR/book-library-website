@@ -10,6 +10,7 @@ $orange-invert: findColorInvert($orange);
 $custom-colors: ("white": ($white, $white-invert), "blue": ($blue, $blue-invert), "orange": ($orange, $orange-invert));
 @import "bulma/bulma.sass";
 @import "./common.scss";
+@import "./views/pages/home/home.scss";
 @import "https://use.fontawesome.com/releases/v5.15.4/css/solid.css";
 @import "https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css";
 
@@ -18,3 +19,4 @@ $custom-colors: ("white": ($white, $white-invert), "blue": ($blue, $blue-invert)
 body {
   background-color: $white;
 }
+

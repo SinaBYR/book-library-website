@@ -1,0 +1,24 @@
+.trending-books-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.trending-book-cover {
+  height: 240px !important;
+}
+
+@media screen and (max-width: 749px) {
+  .trending-books-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trending-book-cover {
+    height: 360px !important;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .trending-book-cover {
+    height: 220px !important;
+  }
+}

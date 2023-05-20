@@ -9,7 +9,7 @@
 </head>
 <body>
   <main class="hero is-fullheight">
-    {{> navbar/index }}
+    {{> navbar/index}}
 
     <div class="hero-body is-block">
       {{!-- Welcome --}}
@@ -40,82 +40,18 @@
         <div class="mb-5">
           <h2 class="title is-5">Trending Books</h2>
         </div>
-        <div class="columns px-3 pb-3" style="gap: 0 8px;">
-          <a href="">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-3by4">
-                  <img src="https://bulma.io/images/placeholders/256x256.png">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  <p class="title is-5">Harry Potter and the Prisoner of Azkaban</p>
-                  <p class="subtitle is-6">J. K. Rowling</p>
+        <div class="trending-books-wrapper">
+          {{#each data.trendingBooks}}
+            <a href={{key}} class="column">
+              <div class="card" style="height: 100%;">
+                <div class="card-image">
+                  <figure class="image">
+                    <img src="http://covers.openlibrary.org/b/id/{{cover_i}}-M.jpg" alt="{{title}}" class="trending-book-cover" loading="lazy">
+                  </figure>
                 </div>
               </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-3by4">
-                  <img src="https://bulma.io/images/placeholders/256x256.png">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  <p class="title is-5">Harry Potter and the Prisoner of Azkaban</p>
-                  <p class="subtitle is-6">J. K. Rowling</p>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-3by4">
-                  <img src="https://bulma.io/images/placeholders/256x256.png">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  <p class="title is-5">Harry Potter and the Prisoner of Azkaban</p>
-                  <p class="subtitle is-6">J. K. Rowling</p>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-3by4">
-                  <img src="https://bulma.io/images/placeholders/256x256.png">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  <p class="title is-5">Harry Potter and the Prisoner of Azkaban</p>
-                  <p class="subtitle is-6">J. K. Rowling</p>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-3by4">
-                  <img src="https://bulma.io/images/placeholders/256x256.png">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  <p class="title is-5">Harry Potter and the Prisoner of Azkaban</p>
-                  <p class="subtitle is-6">J. K. Rowling</p>
-                </div>
-              </div>
-            </div>
-          </a>
+            </a>
+          {{/each}}
         </div>
       </section>
 
