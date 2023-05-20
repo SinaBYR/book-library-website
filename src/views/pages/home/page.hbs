@@ -60,28 +60,12 @@
         <div class="mb-5">
           <h2 class="title is-5">Top Subjects</h2>
         </div>
-        <div class="columns is-3-desktop px-3 pb-3 has-text-centered" style="gap: 0 8px;">
-          <a class="column button box has-background-blue mb-0">
-            <p class="title has-text-white is-6">Adventure</p>
+        <div class="columns is-3-desktop px-3 pb-3 has-text-centered is-clipped" style="gap: 0 8px;">
+          {{#each data.topSubjects}}
+          <a class="column button box has-background-blue mb-0" href="{{key}}">
+            <p class="title has-text-white is-6">{{name}}</p>
           </a>
-          <a class="column button box has-background-blue mb-0">
-            <p class="title has-text-white is-6">Classic</p>
-          </a>
-          <a class="column button box has-background-blue mb-0">
-            <p class="title has-text-white is-6">History</p>
-          </a>
-          <a class="column button box has-background-blue mb-0">
-            <p class="title has-text-white is-6">Crime</p>
-          </a>
-          <a class="column button box has-background-blue mb-0">
-            <p class="title has-text-white is-6">Action</p>
-          </a>
-          <a class="column button box has-background-blue mb-0">
-            <p class="title has-text-white is-6">Adventure</p>
-          </a>
-          <a class="column button box has-background-blue mb-0">
-            <p class="title has-text-white is-6">Classic</p>
-          </a>
+          {{/each}}
         </div>
       </section>
     </div>
