@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{data.work.title}}</title>
+  <link rel="stylesheet" href="/css/main.min.css">
+</head>
+<body>
+  <main class="hero is-fullheight">
+    {{> navbar/index}}
+
+    <div class="hero-body is-block">
+      <section class="container is-max-desktop box">
+        <div class="is-flex">
+          <aside class="mr-5">
+            <div class="aside-image-wrapper mb-3">
+              <figure class="image">
+                <img class="trending-book-cover" src="{{data.work.cover_url}}" alt="{{data.work.title}} cover" loading="lazy">
+              </figure>
+            </div>
+            <div class="buttons is-flex is-flex-direction-column is-centered">
+              <button class="button has-text-white has-background-blue is-fullwidth">Read</button>
+              <button class="button has-text-white has-background-blue is-fullwidth">Borrow</button>
+            </div>
+          </aside>
+          <div>
+            <header class="mb-5">
+              <div class="header-top">
+                <h2 class="title is-3">The Right Choice</h2>
+                <p class="subtitle is-5">
+                  <span>By</span>
+                  {{#each data.work.authors}}
+                  <a href="#" class="is-underlined">{{name}}</a>&nbsp;
+                  {{/each}}
+                </p>
+              </div>
+              <div class="header-bottom">
+                <div>
+                  <span>Ratings:</span>&nbsp;
+                  <span class="is-size-4 has-text-orange">{{data.work.rating.stars}}</span>
+                  <span>({{data.work.rating.count}})</span>
+                </div>
+                <div>
+                  <span>Revision:</span>&nbsp;
+                  <span>{{data.work.revision}}</span>
+                </div>
+              </div>
+            </header>
+            <article>
+              <div class="mb-5">
+                <h2 class="title is-5">Description</h2>
+                <p class="subtitle is-6">{{data.work.description}}</p>
+              </div>
+              <div>
+                <h2 class="title is-5">Subjects</h2>
+                <p class="subtitle is-6">
+                  {{#each data.work.subjects}}
+                  <a class="is-underlined" href="#">{{this}}</a>&nbsp;
+                  {{/each}}
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {{> footer}}
+  </main>
+</body>
+</html>
