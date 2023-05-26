@@ -64,12 +64,13 @@ async function getWorkMetaData(bookId: string) {
   return {
     title: metaData.title,
     authors,
-    description: metaData.description.value,
+    description: metaData.description?.value || metaData.description || '- Nothing found to display -',
     subjects: metaData.subjects,
     revision: metaData.revision,
     created_at: metaData.created,
     // could contain more covers
-    cover_url: 'http://covers.openlibrary.org/b/id/' + metaData.covers[0] + '-M.jpg'
+    // it's also possible that a work doesn't have covers
+    cover_url: metaData.covers ? 'http://covers.openlibrary.org/b/id/' + metaData.covers[0] + '-M.jpg' : null
   };
 }
 
@@ -88,7 +89,8 @@ async function getAuthor(key: string) {
     bio: data.bio,
     remote_ids: data.remote_ids,
     birth_date: data.birth_date,
-    photo_url: 'https://covers.openlibrary.org/a/id/' + data.photos[0] + '-M.jpg'
+    // it's possible that an author doesn't have photos
+    photo_url: data.photos ? 'https://covers.openlibrary.org/a/id/' + data.photos[0] + '-M.jpg' : null
   };
 }
 
