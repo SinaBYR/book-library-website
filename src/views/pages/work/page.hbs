@@ -8,11 +8,11 @@
   <link rel="stylesheet" href="/css/main.min.css">
 </head>
 <body>
-  <main class="hero is-fullheight">
+  <div class="hero is-fullheight">
     {{> navbar/index}}
 
     <div class="hero-body is-block">
-      <section class="container is-max-desktop box">
+      <main class="container is-max-desktop box">
         <div class="is-flex">
           <aside class="mr-5">
             <div class="aside-image-wrapper mb-3">
@@ -26,7 +26,7 @@
             </div>
           </aside>
           <div>
-            <header class="mb-5">
+            <header class="mb-6">
               <div class="header-top">
                 <h2 class="title is-3">The Right Choice</h2>
                 <p class="subtitle is-5">
@@ -48,26 +48,43 @@
                 </div>
               </div>
             </header>
-            <article>
-              <div class="mb-5">
-                <h2 class="title is-5">Description</h2>
-                <p class="subtitle is-6">{{data.work.description}}</p>
-              </div>
-              <div>
-                <h2 class="title is-5">Subjects</h2>
-                <p class="subtitle is-6">
+            <section class="mb-6">
+              <h2 class="title is-5">Description</h2>
+              <p class="subtitle is-6">{{data.work.description}}</p>
+            </section>
+            <section class="mb-6">
+              <h2 class="title is-5">Subjects</h2>
+              <p class="subtitle is-6">
+                {{#if data.work.subjects}}
                   {{#each data.work.subjects}}
                   <a class="is-underlined" href="#">{{this}}</a>&nbsp;
                   {{/each}}
-                </p>
+                {{else}}
+                  - Nothing found to display -
+                {{/if}}
+              </p>
+            </section>
+            <section class="mb-6">
+              <h2 class="title is-5">About the authors</h2>
+              {{#each data.work.authors}}
+              <div class="author-card box">
+                <div class="author-card-top mb-4">
+                  <img src="{{photo_url}}" alt="{{name}} author photo" loading="lazy">
+                  <div class="author-card-info">
+                    <h2 class="title is-5">{{name}}</h2>
+                    <p class="subtitle is-6">{{birth_date}}</p>
+                  </div>
+                </div>
+                <p class="subtitle is-6">{{bio}}</p>
               </div>
-            </article>
+              {{/each}}
+            </section>
           </div>
         </div>
-      </section>
+      </main>
     </div>
 
     {{> footer}}
-  </main>
+  </div>
 </body>
 </html>

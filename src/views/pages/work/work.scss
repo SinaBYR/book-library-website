@@ -1,3 +1,20 @@
 .aside-image-wrapper {
   width: 180px;
 }
+
+.author-card {
+  width: 100%;
+}
+
+.author-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  img {
+    width: 70px;
+    height: 70px;
+    margin-right: 0.5rem;
+    border-radius: 50px;
+  }
+}
