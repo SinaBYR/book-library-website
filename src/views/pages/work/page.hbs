@@ -75,9 +75,20 @@
                     <p class="subtitle is-6">{{birth_date}}</p>
                   </div>
                 </div>
-                <p class="subtitle is-6">{{bio}}</p>
+                <div class="bio-text" data-is-collapsed="true">
+                  <p class="subtitle is-6 mb-1">
+                    {{!-- <span>{{bio}}</span> --}}
+                    <span>Susan Spaeth was born on December 11, 1946. Her mother was part of the women's liberation movement many years before it became fashionable. Her best friends are her mother and her sister, Dannis Cole, who now has two daughters, Amanda Belle Hofstetter </span>
+                  </p>
+                  <div class="bio-text-expander-fade"></div>
+                </div>
+                <a class="bio-text-expander-button is-ghost" href="#">
+                  <i class="fa fa-angle-down"></i>
+                  <span> Read more</span>
+                </a>
               </div>
               {{/each}}
+              
             </section>
           </div>
         </div>
@@ -86,5 +97,7 @@
 
     {{> footer}}
   </div>
+
+  <script src="/js/work.js"></script>
 </body>
 </html>

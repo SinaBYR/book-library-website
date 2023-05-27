@@ -10,10 +10,21 @@ type mode = "production" | "none" | "development" | undefined
 const config: webpack.Configuration = {
   entry: {
     server: './src/server.ts',
-    client: {
-      import: ['./src/views/partials/navbar/navbar.protected.ts'],
-      filename: 'public/js/client.js'
+    work: {
+      import: './src/views/pages/work/index.ts',
+      filename: 'public/js/work.js'
+    },
+    protectedNavbar: {
+      import: './src/views/partials/navbar/navbar.protected.ts',
+      filename: 'public/js/protected-navbar.js'
     }
+    // client: {
+    //   import: [
+    //     './src/views/partials/navbar/navbar.protected.ts',
+    //     './src/views/pages/work/index.ts'
+    //   ],
+    //   filename: 'public/js/client.js'
+    // }
     // home: {
     //   import: './src/views/home/home.ts',
     //   filename: 'public/js/home.min.js'
