@@ -86,7 +86,7 @@ async function getAuthor(key: string) {
 
   return {
     name: data.name,
-    bio: data.bio,
+    bio: data.bio.value || data.bio,
     remote_ids: data.remote_ids,
     birth_date: data.birth_date,
     // it's possible that an author doesn't have photos
