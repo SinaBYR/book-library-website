@@ -54,15 +54,22 @@
             </section>
             <section class="mb-6">
               <h2 class="title is-5">Subjects</h2>
-              <p class="subtitle is-6">
-                {{#if data.work.subjects}}
-                  {{#each data.work.subjects}}
-                  <a class="is-underlined" href="#">{{this}}</a>&nbsp;
-                  {{/each}}
-                {{else}}
-                  - Nothing found to display -
-                {{/if}}
-              </p>
+              <div class="subjects subtitle is-6 mb-1">
+								<div class="subjects-wrapper">
+									{{#if data.work.subjects}}
+										{{#each data.work.subjects}}
+											<a class="is-underlined" href="#">{{this}}</a>&nbsp;
+										{{/each}}
+									{{else}}
+										- Nothing found to display -
+									{{/if}}
+								</div>
+								<div class="subjects-expander-fade"></div>
+							</div>
+							<a class="subjects-expander-button is-ghost" href="#">
+								<i class="fa fa-angle-down"></i>
+								<span>Expand</span>
+							</a>
             </section>
             <section class="mb-6">
               <h2 class="title is-5">About the authors</h2>
@@ -77,8 +84,8 @@
                 </div>
                 <div class="bio-text" data-is-collapsed="true">
                   <p class="subtitle is-6 mb-1">
-                    {{!-- <span>{{bio}}</span> --}}
-                    <span>Susan Spaeth was born on December 11, 1946. Her mother was part of the women's liberation movement many years before it became fashionable. Her best friends are her mother and her sister, Dannis Cole, who now has two daughters, Amanda Belle Hofstetter </span>
+                    <span>{{bio}}</span>
+                    {{!-- <span>Susan Spaeth was born on December 11, 1946. Her mother was part of the women's liberation movement many years before it became fashionable. Her best friends are her mother and her sister, Dannis Cole, who now has two daughters, Amanda Belle Hofstetter </span> --}}
                   </p>
                   <div class="bio-text-expander-fade"></div>
                 </div>
